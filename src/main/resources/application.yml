@@ -1,0 +1,35 @@
+spring:
+  datasource:
+    url: jdbc:h2:file:C:/Users/PinoE/Documents/H2/testdb;DB_CLOSE_ON_EXIT=FALSE;AUTO_SERVER=TRUE  # Connessione a un DB H2 persistente sul filesystem
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 10
+      idle-timeout: 30000
+      pool-name: HikariPool-1
+      max-lifetime: 2000000
+      connection-timeout: 30000
+
+  h2:
+    console:
+      enabled: true   # Abilita la console H2 per vedere il contenuto del DB
+      path: /h2-console  # Definisce il path per accedere alla console H2 tramite web
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update   # Gestisce la creazione e l'aggiornamento della struttura del DB
+
+  batch:
+    initialize-schema: always
+    job:
+      enabled: true   # Abilita i Job di Spring Batch
+
+# Opzionale: configurazione del file CSV
+csv:
+  input-file: classpath:/Clienti.csv  # Percorso del file di input CSV
+  output-directory: classpath:output/      # Directory di output per i CSV separati per anno
+
+sceltaJob: 'primoJob'
